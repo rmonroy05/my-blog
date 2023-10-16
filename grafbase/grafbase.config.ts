@@ -1,37 +1,17 @@
-import { g, auth, config } from '@grafbase/sdk'
+import { g, config, auth } from '@grafbase/sdk';
 
-const post = g.model('Post', {
-  title: g.string(),
-  slug: g.string().unique(),
-  content: g.string().optional(),
-  publishedAt: g.datetime().optional(),
-  comments: g.relation(() => comment).optional().list().optional(),
-  likes: g.int().default(0),
-  tags: g.string().optional().list().length({ max: 5 }),
-  author: g.relation(() => User).optional()
-}).search()
-
-const comment = g.model('Comment', {
-  post: g.relation(post),
-  body: g.string(),
-  likes: g.int().default(0),
-  author: g.relation(() => User).optional()
-})
-
+// @ts-ignore
 const User = g.model('User', {
-  name: g.string(),
-  email: g.email().optional(),
-  posts: g.relation(post).optional().list(),
-  comments: g.relation(comment).optional().list(),
+  name: g.string().length({ min: 2, max: 100 }),
+  email: g.string().unique(),
   avatarUrl: g.url(),
   description: g.string().length({ min: 2, max: 1000 }).optional(),
   githubUrl: g.url().optional(),
-  linkedInUrl: g.url().optional(),
+  linkedinUrl: g.url().optional(), 
   projects: g.relation(() => Project).list().optional(),
 }).auth((rules) => {
   rules.public().read()
 })
-
 
 // @ts-ignore
 const Project = g.model('Project', {
