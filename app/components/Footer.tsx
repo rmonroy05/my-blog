@@ -21,7 +21,7 @@ const Footer = () => (
     <section className="flexStart footer">
         <div className="flex flex-col gap-12 w-full">
             <div className="flex items-start flex-col">
-                <Image src="/logo.png" width={116} height={38} alt="logo" />
+                <Image src="/logo-blank.png" width={96} height={38} alt="logo" className="bg-black rounded-full" />
 
                 <p className="text-start text-sm font-normal mt-5 max-w-xs">
                 This blog is dedicated to all the developers out there, from the seasoned professionals to the curious newcomers, who want to explore the fascinating intersection of Java and AI. We will dive into the world of AI, examining its significance in today's society, and we'll focus on how Java, a well-established and beloved programming language, plays a pivotal role in AI development.</p>
